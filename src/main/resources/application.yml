@@ -1,9 +1,9 @@
 server:
   port: 8080
 
-logging:
-  level:
-    ROOT: DEBUG
+#logging:
+    #  level:
+  #ROOT: DEBUG
 
 spring:
   thymeleaf:
@@ -15,3 +15,13 @@ spring:
     mode: HTML
     prefix: classpath:/templates/
     suffix: .html
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
