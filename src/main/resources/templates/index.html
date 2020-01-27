@@ -2,25 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-        <div th:replace="common/header :: common-header"/>
-
+    <div th:replace="common/header :: common-header"/>
 </head>
 
 <body>
 <div class="container-fluid">
 
-<div class="row">
-    <div class="col-md-12">
-        <h2 id="heading-two">TitleTwo</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 id="heading-two">Weather by City</h2>
+        </div>
+    </div>
+
+    <div class="main-body">
+
+        <div class="row course-list list">
+            <table id="customers">
+                <tr th:each="columnName : ${weatherTableColumns}">
+                    <td th:text="${columnName}"/>
+                </tr>
+            </table>
+        </div>
+
+
+        <!--
+                <div class="row course-list list">
+                    <div class="row course-list ">
+                        <div th:each="product,it : ${products}">
+                            <div th:if="${(it.count gt 3 and it.count lt 7)}">
+                                <div th:replace="common/productdiv :: productdiv">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
     </div>
 </div>
 
-<div class="main-body">
-
-
 <div th:replace="common/header :: end-scripts"/>
-
-
 <div class="container" th:replace="common/footer :: common-footer"/>
 
 </body>
