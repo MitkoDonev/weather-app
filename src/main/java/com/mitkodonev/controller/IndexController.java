@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class IndexController {
 
-    private String[] TABLE_COLUMNS = {"ID", "CITY", "TEMPERATURE"};
+    private String[] TABLE_COLUMNS = {"ID", "CITY", "TEMPERATURE" ,"BLA", "PAPA", "TATA"};
 
     @RequestMapping("/index")
     public String requestIndex(Model model) {

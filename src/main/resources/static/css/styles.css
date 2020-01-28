@@ -21,8 +21,12 @@ body {
     margin-top: -85px;
 }
 
-thead .thead-green {
-    background-color: #17a2b8
+p {
+    color: #17a2b8
+}
+
+thead{
+    background-color: #17a2b8;
 }
 
 #title {
