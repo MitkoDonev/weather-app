@@ -15,28 +15,20 @@
         <p class="text-center font-weight-light pt-5">The below table shows the weather by city</p>
         <table class="table">
             <thead>
-                <tr>
-                    <th scope="col" th:each="columnName : ${weatherTableColumns}" th:text="${columnName}"/>
-                </tr>
+            <tr>
+                <th scope="col" th:each="columnName : ${weatherTableColumns}" th:text="${columnName}"/>
+            </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+            <tr scope="col" th:each="weather : ${weatherData}">
+                <th scope="row" th:text="${weather.getId()}"/>
+                <th scope="row" th:text="${weather.getCity().getCity_name()}"/>
+                <th scope="row" th:text="${weather.getDate_time()}"/>
+                <th scope="row" th:text="${weather.getLowest_temp()}"/>
+                <th scope="row" th:text="${weather.getPrecipitation()}"/>
+                <th scope="row" th:text="${weather.getWind()}"/>
+                <th scope="row" th:text="${weather.getHumidity()}"/>
+                <th scope="row" th:text="${weather.getDescription()}"/>
             </tr>
             </tbody>
         </table>

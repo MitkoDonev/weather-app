@@ -1,45 +1,39 @@
 package com.mitkodonev.entity;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "WEATHER")
 public class Weather {
-    private int id;
-    private int city_id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    @OneToOne
+    private City city;
     private LocalDateTime date_time;
     private int highest_temp;
     private int lowest_temp;
-    private int precip;
+    private int precipitation;
     private String wind;
     private int humidity;
     private String description;
 
-    public Weather(int id, int city_id, LocalDateTime date_time, int highest_temp, int lowest_temp,
-                   int precip, String wind, int humidity, String description) {
-        this.id = id;
-        this.city_id = city_id;
-        this.date_time = date_time;
-        this.highest_temp = highest_temp;
-        this.lowest_temp = lowest_temp;
-        this.precip = precip;
-        this.wind = wind;
-        this.humidity = humidity;
-        this.description = description;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getCity_id() {
-        return city_id;
+    public City getCity() {
+        return city;
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public LocalDateTime getDate_time() {
@@ -66,12 +60,12 @@ public class Weather {
         this.lowest_temp = lowest_temp;
     }
 
-    public int getPrecip() {
-        return precip;
+    public int getPrecipitation() {
+        return precipitation;
     }
 
-    public void setPrecip(int precip) {
-        this.precip = precip;
+    public void setPrecipitation(int precipitation) {
+        this.precipitation = precipitation;
     }
 
     public String getWind() {

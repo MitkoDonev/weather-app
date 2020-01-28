@@ -11,18 +11,19 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] PUBLIC_MACHERS = {
+    private static final String[] PUBLIC_MATCHERS = {
             "/webjars/**",
             "/css/**",
             "/js/**",
             "/images/**",
             "/",
-            "/index/**",
             "/details/**",
             "/checkout",
             "/docheckout",
             "/login",
-            "/logout"
+            "/logout",
+            "/h2",
+            "/h2/**"
     };
 
     private final CustomAuthenticationProvider authProvider;
@@ -35,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers(PUBLIC_MACHERS).permitAll()
+                .authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll()
                 .and().logout()
                 .deleteCookies("remove")

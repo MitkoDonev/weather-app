@@ -1,15 +1,19 @@
 package com.mitkodonev.entity;
 
-public class Users {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "USER")
+public class User {
+
+    @Id
+    @GeneratedValue
     private int id;
     private String username;
     private String password;
-
-    public Users(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
 
     public int getId() {
         return id;

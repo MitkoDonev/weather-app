@@ -1,21 +1,24 @@
 package com.mitkodonev.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CITIES")
 public class City {
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
     private String city_name;
     private String country;
 
-    public City(int id, String city_name, String country) {
-        this.id = id;
-        this.city_name = city_name;
-        this.country = country;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
