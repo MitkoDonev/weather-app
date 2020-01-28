@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet" media="screen"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div id="weather-input">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container" th:fragment="login">
+            <div id="input-row" class="row justify-content-center align-items-left">
+                <div id="input-column" class="col-md-6">
+                    <div id="input-box" class="col-md-12">
+                        <form id="input-form" class="form" th:object="${weatherData}" th:action="@{/addWeather}"
+                              method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" id="city" placeholder="City"
+                                           th:field="*{city.city_name}">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="country">Country</label>
+                                    <input type="text" class="form-control" id="country" placeholder="Country"
+                                           th:field="*{city.country}">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="highest">Highest Temperature</label>
+                                    <input type="number" class="form-control" id="highest"
+                                           placeholder="Highest temperature" th:field="*{highest_temp}">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="lowest">Lowest Temperature</label>
+                                    <input type="number" class="form-control" id="lowest"
+                                           placeholder="Lowest temperature" th:field="*{lowest_temp}">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="wind">Wind</label>
+                                    <input type="text" class="form-control" id="wind" placeholder="Wind"
+                                           th:field="*{wind}">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="humidity">Humidity</label>
+                                    <input type="number" class="form-control" id="humidity" placeholder="Humidity"
+                                           th:field="*{humidity}">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="precipitation">Precipitation</label>
+                                    <input type="number" class="form-control" id="precipitation"
+                                           placeholder="Precipitation" th:field="*{precipitation}">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="date">Date</label>
+                                    <input type="date" class="form-control" id="date" placeholder="Date"
+                                           th:field="*{date_time}">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control" id="description" placeholder="Description"
+                                           th:field="*{description}">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Add weather</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

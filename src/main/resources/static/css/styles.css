@@ -5,7 +5,7 @@ body {
     height: 100vh;
 }
 
-#login .container #login-row #login-column #login-box {
+#input .container #input-row #input-column #input-box {
     margin-top: 80px;
     max-width: 600px;
     height: 320px;
@@ -13,12 +13,24 @@ body {
     background-color: #EAEAEA;
 }
 
-#login .container #login-row #login-column #login-box #login-form {
+#input .container #input-row #input-column #input-box #input-form {
     padding: 20px;
 }
 
-#login .container #login-row #login-column #login-box #login-form #register-link {
+#input .container #input-row #input-column #input-box #input-form #register-link {
     margin-top: -85px;
+}
+
+#weather-input .container #input-row #input-column #input-box {
+    margin-top: 40px;
+    max-width: 600px;
+    height: 500px;
+    border: 1px solid #9C9C9C;
+    background-color: #EAEAEA;
+}
+
+#weather-input .container #input-row #input-column #input-box #input-form {
+    padding: 20px;
 }
 
 p {
