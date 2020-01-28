@@ -1,16 +1,16 @@
 server:
   port: 8080
 
-#logging:
-    #  level:
-  #ROOT: DEBUG
+logging:
+    level:
+      ROOT: DEBUG
 
 spring:
   thymeleaf:
     cache: false
-    check-template: on
-    check-template-location: on
-    enabled: on
+    check-template: true
+    check-template-location: true
+    enabled: true
     encoding: UTF-8
     mode: HTML
     prefix: classpath:/templates/
