@@ -1,4 +1,4 @@
-package com.mitkodonev.Entety;
+package com.mitkodonev.entity;
 
 public class Users {
     private int id;

@@ -1,4 +1,4 @@
-package com.mitkodonev.Entety;
+package com.mitkodonev.entity;
 
 import java.time.LocalDateTime;
 
