@@ -23,7 +23,7 @@ body {
 
 #weather-input .container #input-row #input-column #input-box {
     margin-top: 40px;
-    max-width: 750px;
+    max-width: 950px;
     height: 500px;
     border: 1px solid #9C9C9C;
     background-color: #EAEAEA;
@@ -37,17 +37,21 @@ p {
     color: #17a2b8
 }
 
-thead{
+thead {
     background-color: #17a2b8;
 }
 
-.weather-form{
+.weather-form {
     background-color: #17a2b8;
 }
 
 #title {
     color: #17a2b8;
     margin-bottom: 50px;
+}
+
+#bye {
+    color: #17a2b8;
 }
 
 #logout {
