@@ -1,8 +1,6 @@
 package com.mitkodonev.controller;
 
-import com.mitkodonev.model.LoginData;
 import com.mitkodonev.model.WeatherData;
-import com.mitkodonev.repository.UserRepository;
 import com.mitkodonev.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,7 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @Autowired
-    public WeatherController(WeatherService weatherService, UserRepository userRepository) {
+    public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
 
