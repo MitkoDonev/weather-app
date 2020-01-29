@@ -1,6 +1,7 @@
 package com.mitkodonev.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +13,7 @@ public class Weather {
     private Long id;
     @OneToOne
     private City city;
-    private LocalDateTime date_time;
+    private LocalDate date_time;
     private int highest_temp;
     private int lowest_temp;
     private int precipitation;
@@ -36,11 +37,11 @@ public class Weather {
         this.city = city;
     }
 
-    public LocalDateTime getDate_time() {
+    public LocalDate getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(LocalDateTime date_time) {
+    public void setDate_time(LocalDate date_time) {
         this.date_time = date_time;
     }
 

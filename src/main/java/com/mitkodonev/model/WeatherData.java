@@ -1,14 +1,17 @@
 package com.mitkodonev.model;
 
 import com.mitkodonev.entity.City;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class WeatherData {
 
     private Long id;
     private City city;
-    private LocalDateTime date_time;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date_time;
     private String temperature;
     private int highest_temp;
     private int lowest_temp;
@@ -35,11 +38,11 @@ public class WeatherData {
         return this;
     }
 
-    public LocalDateTime getDate_time() {
+    public LocalDate getDate_time() {
         return date_time;
     }
 
-    public WeatherData setDate_time(LocalDateTime date_time) {
+    public WeatherData setDate_time(LocalDate date_time) {
         this.date_time = date_time;
         return this;
     }
