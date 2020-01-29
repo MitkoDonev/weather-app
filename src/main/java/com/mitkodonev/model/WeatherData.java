@@ -48,16 +48,18 @@ public class WeatherData {
         return highest_temp;
     }
 
-    public void setHighest_temp(int highest_temp) {
+    public WeatherData setHighest_temp(int highest_temp) {
         this.highest_temp = highest_temp;
+        return this;
     }
 
     public int getLowest_temp() {
         return lowest_temp;
     }
 
-    public void setLowest_temp(int lowest_temp) {
+    public WeatherData setLowest_temp(int lowest_temp) {
         this.lowest_temp = lowest_temp;
+        return this;
     }
 
     public String getTemperature() {

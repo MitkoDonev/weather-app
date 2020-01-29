@@ -21,9 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/checkout",
             "/docheckout",
             "/login",
-            "/logout",
-            "/h2",
-            "/h2/**"
+            "/logout"
     };
 
     private final CustomAuthenticationProvider authProvider;

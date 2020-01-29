@@ -7,8 +7,10 @@ import com.mitkodonev.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,22 +28,39 @@ public class WeatherService {
     public List<WeatherData> getAll() {
         List<Weather> weathers = weatherRepository.findAll();
         if (weathers != null && !weathers.isEmpty()) {
-            return weathers.stream().map(w -> new WeatherData()
-                    .setId(w.getId())
-                    .setCity(w.getCity())
-                    .setDate_time(w.getDate_time())
-                    .setDescription(w.getDescription())
-                    .setHumidity(w.getHumidity())
-                    .setWind(w.getWind())
-                    .setPrecipitation(w.getPrecipitation())
-                    .setTemperature(w.getLowest_temp(), w.getHighest_temp())).collect(Collectors.toList());
+            return weathers.stream().map(w -> mapToWeatherData(w)).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
 
-    public void addWeather(WeatherData weatherData) {
+    public WeatherData findById(Long id) {
+        Optional<Weather> weather = weatherRepository.findById(id);
+        if (weather.isPresent()) {
+            return mapToWeatherData(weather.get());
+        }
+        return null;
+    }
+
+    public void saveWeather(WeatherData weatherData) {
+        Weather weather = mapToWeather(weatherData);
+        if (weather != null) {
+            if (weather.getCity() != null) {
+                cityRepository.save(weather.getCity());
+            }
+            weatherRepository.save(weather);
+        }
+    }
+
+    public void deleteWeather(Long weatherId) {
+        if (weatherId != null) {
+            weatherRepository.deleteById(weatherId);
+        }
+    }
+
+    private Weather mapToWeather(WeatherData weatherData) {
         if (weatherData != null) {
             Weather weather = new Weather();
+            weather.setId(weatherData.getId());
             weather.setDate_time(weatherData.getDate_time());
             weather.setDescription(weatherData.getDescription());
             weather.setHighest_temp(weatherData.getHighest_temp());
@@ -49,14 +68,23 @@ public class WeatherService {
             weather.setPrecipitation(weatherData.getPrecipitation());
             weather.setHumidity(weatherData.getHumidity());
             weather.setWind(weatherData.getWind());
-
-            if (weatherData.getCity() != null) {
-                cityRepository.save(weatherData.getCity());
-                weather.setCity(weatherData.getCity());
-            }
-
-            weatherRepository.save(weather);
+            weather.setCity(weatherData.getCity());
+            return weather;
         }
+        return null;
     }
 
+    private WeatherData mapToWeatherData(Weather weather) {
+        return new WeatherData()
+                .setId(weather.getId())
+                .setCity(weather.getCity())
+                .setDate_time(weather.getDate_time())
+                .setDescription(weather.getDescription())
+                .setHighest_temp(weather.getHighest_temp())
+                .setLowest_temp(weather.getLowest_temp())
+                .setHumidity(weather.getHumidity())
+                .setWind(weather.getWind())
+                .setPrecipitation(weather.getPrecipitation())
+                .setTemperature(weather.getLowest_temp(), weather.getHighest_temp());
+    }
 }

@@ -10,82 +10,43 @@
 
 <body>
 <div class="container">
-    <div id="weather-input">
-        <h3 class="text-center text-white pt-5">Login form</h3>
-        <div class="container" th:fragment="login">
-            <div id="input-row" class="row justify-content-center align-items-left">
-                <div id="input-column" class="col-md-6">
-                    <div id="input-box" class="col-md-12">
-                        <form id="input-form" class="form" th:object="${weatherData}" th:action="@{/addWeather}"
-                              method="post">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="city">City</label>
-                                    <input type="text" class="form-control" id="city" placeholder="City"
-                                           th:field="*{city.city_name}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="country">Country</label>
-                                    <input type="text" class="form-control" id="country" placeholder="Country"
-                                           th:field="*{city.country}">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="highest">Highest Temperature</label>
-                                    <input type="number" class="form-control" id="highest"
-                                           placeholder="Highest temperature" th:field="*{highest_temp}">
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label for="lowest">Lowest Temperature</label>
-                                    <input type="number" class="form-control" id="lowest"
-                                           placeholder="Lowest temperature" th:field="*{lowest_temp}">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="wind">Wind</label>
-                                    <input type="text" class="form-control" id="wind" placeholder="Wind"
-                                           th:field="*{wind}">
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="humidity">Humidity</label>
-                                    <input type="number" class="form-control" id="humidity" placeholder="Humidity"
-                                           th:field="*{humidity}">
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="precipitation">Precipitation</label>
-                                    <input type="number" class="form-control" id="precipitation"
-                                           placeholder="Precipitation" th:field="*{precipitation}">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="date">Date</label>
-                                    <input type="date" class="form-control" id="date" placeholder="Date"
-                                           th:field="*{date_time}">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description" placeholder="Description"
-                                           th:field="*{description}">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Add weather</button>
+    <h1 id="title" class="text-center font-weight-light pt-5">Weather</h1>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <a class="btn btn-info btn-md" t th:method="get" ype="button" th:href="@{/weather/new}">Add new</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" th:each="columnName : ${weatherTableColumns}" th:text="${columnName}"/>
+            </tr>
+            </thead>
+            <tbody>
+            <tr scope="col" th:each="weatherData : ${weatherDataList}">
+                <th scope="row" th:text="${weatherData.getId()}"/>
+                <th scope="row" th:text="${weatherData.getCity().getCity_name()}"/>
+                <th scope="row" th:text="${weatherData.getDate_time()}"/>
+                <th scope="row" th:text="${weatherData.getTemperature()}"/>
+                <th scope="row" th:text="${weatherData.getPrecipitation()}  + '%'"/>
+                <th scope="row" th:text="${weatherData.getWind()}"/>
+                <th scope="row" th:text="${weatherData.getHumidity()}  + '%'"/>
+                <th scope="row" th:text="${weatherData.getDescription()}"/>
+                <th scope="form-row">
+                    <div class="form-group col-md-6">
+                        <a class="btn btn-warning" type="button"
+                           th:href="@{/weather/{weatherId}/(weatherId=${weatherData.id})}">EDIT</a>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <form class="form" th:action="@{/weather/{weatherId}/(weatherId=${weatherData.id})}" th:method="delete">
+                            <input type="submit" name="submit" class="btn btn-danger btn-md" value="DELETE">
                         </form>
                     </div>
-                </div>
-            </div>
-        </div>
+                </th>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
