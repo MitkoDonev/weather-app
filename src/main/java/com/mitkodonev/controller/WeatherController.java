@@ -49,9 +49,9 @@ public class WeatherController {
         return "redirect:weather";
     }
 
-    @RequestMapping(value = "/weather/{weatherId}", method = RequestMethod.DELETE)
-    public String deleteWeather(@PathVariable Long weatherId, Model model) {
+    @RequestMapping(value = "/weather/{weatherId}/delete")
+    public String deleteWeather(@PathVariable Long weatherId) {
         weatherService.deleteWeather(weatherId);
-        return "redirect:weather";
+        return "redirect:/weather";
     }
 }

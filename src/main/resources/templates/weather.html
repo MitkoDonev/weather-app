@@ -13,7 +13,7 @@
     <h1 id="title" class="text-center font-weight-light pt-5">Weather</h1>
     <div class="row">
         <div class="form-group col-md-4">
-            <a class="btn btn-info btn-md" t th:method="get" ype="button" th:href="@{/weather/new}">Add new</a>
+            <a class="btn btn-info btn-md" th:method="get" ype="button" th:href="@{/weather/new}">Add new</a>
         </div>
     </div>
     <div class="row">
@@ -33,15 +33,14 @@
                 <th scope="row" th:text="${weatherData.getWind()}"/>
                 <th scope="row" th:text="${weatherData.getHumidity()}  + '%'"/>
                 <th scope="row" th:text="${weatherData.getDescription()}"/>
-                <th scope="form-row">
+                <th scope="row">
                     <div class="form-group col-md-6">
                         <a class="btn btn-warning" type="button"
                            th:href="@{/weather/{weatherId}/(weatherId=${weatherData.id})}">EDIT</a>
                     </div>
                     <div class="form-group col-md-6">
-                        <form class="form" th:action="@{/weather/{weatherId}/(weatherId=${weatherData.id})}" th:method="delete">
-                            <input type="submit" name="submit" class="btn btn-danger btn-md" value="DELETE">
-                        </form>
+                        <a th:href="@{/weather/{weatherId}/delete/(weatherId=${weatherData.id})}"
+                           class="btn btn-danger">DELETE</a>
                     </div>
                 </th>
             </tr>
