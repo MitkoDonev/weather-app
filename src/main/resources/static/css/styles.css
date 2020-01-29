@@ -23,7 +23,7 @@ body {
 
 #weather-input .container #input-row #input-column #input-box {
     margin-top: 40px;
-    max-width: 600px;
+    max-width: 750px;
     height: 500px;
     border: 1px solid #9C9C9C;
     background-color: #EAEAEA;

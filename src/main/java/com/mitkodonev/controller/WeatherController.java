@@ -1,6 +1,8 @@
 package com.mitkodonev.controller;
 
+import com.mitkodonev.model.LoginData;
 import com.mitkodonev.model.WeatherData;
+import com.mitkodonev.repository.UserRepository;
 import com.mitkodonev.services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,7 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @Autowired
-    public WeatherController(WeatherService weatherService) {
+    public WeatherController(WeatherService weatherService, UserRepository userRepository) {
         this.weatherService = weatherService;
     }
 
@@ -43,10 +45,13 @@ public class WeatherController {
         return "add-edit-weather";
     }
 
-    @RequestMapping(value = "/saveWeather", method = RequestMethod.POST)
-    public String saveWeather(@Valid WeatherData weatherData, BindingResult bindingResult) {
+    @RequestMapping(value = "/saveWeather/{id}", method = RequestMethod.POST)
+    public String saveWeather(@Valid WeatherData weatherData, @PathVariable Long id, BindingResult bindingResult) {
+        if (id != null && id > 0) {
+            weatherData.setId(id);
+        }
         weatherService.saveWeather(weatherData);
-        return "redirect:weather";
+        return "redirect:/weather";
     }
 
     @RequestMapping(value = "/weather/{weatherId}/delete")

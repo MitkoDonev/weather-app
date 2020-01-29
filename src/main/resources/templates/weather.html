@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet" media="screen"/>
@@ -9,48 +9,57 @@
 </head>
 
 <body>
-<div class="container">
-    <div id="logout" >
-        <a type="button" class="btn btn-info" th:href="@{/logout}">Logout</a>
+<div class="container-fluid">
+    <div class="row">
+        <div id="logout">
+            <p sec:authorize="isAuthenticated()">Current user: <b><span th:text="${#authentication.getPrincipal()}"></span></b></p>
+            <a type="button" class="btn btn-info" th:href="@{/logout}">Logout</a>
+        </div>
     </div>
-    <h1 id="title" class="text-center font-weight-light pt-5">Weather</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1 id="title" class="text-center font-weight-light pt-5">Weather</h1>
+        </div>
+    </div>
     <div class="row">
         <div class="form-group col-md-4">
             <a class="btn btn-info btn-md" th:method="get" ype="button" th:href="@{/weather/new}">Add new</a>
         </div>
     </div>
     <div class="row">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col" th:each="columnName : ${weatherTableColumns}" th:text="${columnName}"/>
-            </tr>
-            </thead>
-            <tbody>
-            <tr scope="col" th:each="weatherData : ${weatherDataList}">
-                <th scope="row" th:text="${weatherData.getId()}"/>
-                <th scope="row" th:text="${weatherData.getCity().getCity_name()}"/>
-                <th scope="row" th:text="${weatherData.getDate_time()}"/>
-                <th scope="row" th:text="${weatherData.getTemperature()}"/>
-                <th scope="row" th:text="${weatherData.getPrecipitation()}  + '%'"/>
-                <th scope="row" th:text="${weatherData.getWind()}"/>
-                <th scope="row" th:text="${weatherData.getHumidity()}  + '%'"/>
-                <th scope="row" th:text="${weatherData.getDescription()}"/>
-                <th scope="row">
-                    <div class="row">
-                        <div class="col-6">
-                            <a class="btn btn-warning" type="button"
-                               th:href="@{/weather/{weatherId}/(weatherId=${weatherData.id})}">EDIT</a>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" th:each="columnName : ${weatherTableColumns}" th:text="${columnName}"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr scope="col" th:each="weatherData : ${weatherDataList}">
+                    <th scope="row" th:text="${weatherData.getId()}"/>
+                    <th scope="row" th:text="${weatherData.getCity().getCity_name()}"/>
+                    <th scope="row" th:text="${weatherData.getDate_time()}"/>
+                    <th scope="row" th:text="${weatherData.getTemperature()}"/>
+                    <th scope="row" th:text="${weatherData.getPrecipitation()}  + '%'"/>
+                    <th scope="row" th:text="${weatherData.getWind()}"/>
+                    <th scope="row" th:text="${weatherData.getHumidity()}  + '%'"/>
+                    <th scope="row" th:text="${weatherData.getDescription()}"/>
+                    <th scope="row">
+                        <div class="row">
+                            <div class="col-6">
+                                <a class="btn btn-warning" type="button"
+                                   th:href="@{/weather/{weatherId}/(weatherId=${weatherData.id})}">EDIT</a>
+                            </div>
+                            <div class="col-6">
+                                <a th:href="@{/weather/{weatherId}/delete/(weatherId=${weatherData.id})}"
+                                   type="button" class="btn btn-danger">DELETE</a>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <a th:href="@{/weather/{weatherId}/delete/(weatherId=${weatherData.id})}"
-                               type="button" class="btn btn-danger">DELETE</a>
-                        </div>
-                    </div>
-                </th>
-            </tr>
-            </tbody>
-        </table>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </body>
