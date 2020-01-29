@@ -35,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll()
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll()
+                .antMatchers("/weather/**").fullyAuthenticated()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/weather").permitAll()
                 .and().logout()
                 .deleteCookies("remove")
                 .invalidateHttpSession(true)
